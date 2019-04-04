@@ -1,4 +1,4 @@
-package com.example.today
+package com.example.today.okhttp
 
 import android.util.Log
 import com.example.today.mydata.API

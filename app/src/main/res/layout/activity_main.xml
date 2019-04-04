@@ -19,7 +19,7 @@
 
         <TextView
                 android:id="@+id/tv_toolbar"
-                android:text="Taiwan Weather"
+                android:text="Today"
                 android:textSize="23dp"
                 android:textColor="#FFFFFF"
                 android:layout_gravity="center"
@@ -29,7 +29,7 @@
         <Button
                 android:id="@+id/btn_taiwan"
                 android:layout_gravity="center"
-                android:background="@drawable/taiwan"
+                android:background="@drawable/searchcity"
                 android:layout_height="45dp" tools:layout_editor_absoluteX="179dp"
                 tools:layout_editor_absoluteY="18dp" android:layout_width="35dp"/>
 
