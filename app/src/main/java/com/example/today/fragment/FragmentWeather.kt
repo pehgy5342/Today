@@ -4,15 +4,13 @@ package com.example.today.fragment
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
+import androidx.fragment.app.Fragment
 import com.example.today.R
-import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,10 +26,10 @@ class FragmentWeather : Fragment() {
     lateinit var fragView: View
     var position = 0
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        fragView =  inflater.inflate(R.layout.fragment_weather,container,false)
-
+        fragView = inflater.inflate(R.layout.fragment_weather, container, false)
 
         fragView.fab_searchCity.setOnClickListener {
             AlertDialog.Builder(fragView.context)
@@ -40,12 +38,8 @@ class FragmentWeather : Fragment() {
 
                 .setSingleChoiceItems(R.array.cityNames, 0) { dialogInterface: DialogInterface?, i: Int ->
                     position = i
-
-
                 }
-
                 .setPositiveButton("確定") { dialog, which ->
-
                 }
                 .setNegativeButton("取消") { dialog, which ->
                     //Toast.makeText(this, "已取消", Toast.LENGTH_SHORT).show()
@@ -57,8 +51,6 @@ class FragmentWeather : Fragment() {
                     toast.show()
                 }
                 .create().show()
-
-
         }
         return fragView
     }

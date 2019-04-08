@@ -2,7 +2,6 @@ package com.example.today.okhttp
 
 import android.util.Log
 import com.example.today.mydata.API
-import com.example.today.mydata.ConstellationData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.*
@@ -11,7 +10,10 @@ import java.io.IOException
 
 class Constellation {
 
+    lateinit var constellationList: (ArrayList<String>) -> Unit
+    //inline 多次調用時可用(目前還沒更好的解釋)，reified具體化T參數，
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
+
     fun connect() {
         val api = API()
         val url = api.ConstellationAPI
@@ -38,15 +40,22 @@ class Constellation {
                 val responseStr = response.body()!!.string()
 
 
-//                var myResponse = JSONArray(responseStr)
+                var myResponse = JSONArray(responseStr)
 
-//                println("5555555$myResponse")
-                val mydata = Gson().fromJson<ArrayList<ConstellationData>>(responseStr)
 
-           println("5555555$mydata")
+//                val data = Gson().fromJson<ArrayList<ConstellationData>>(responseStr)
+//                println("5555555$data")
 
-//                println("11111111111$mydata")
+                var constellationNameList = ArrayList<String>()
+                for (i in 0 until myResponse.length()) {
+                    val name = myResponse.getJSONObject(i).getString("name")
 
+                    println("nnnnnnnnnnn$name")
+                    constellationNameList.add(name.toString())
+                }
+                println("cccccccc$constellationNameList")
+
+                constellationList.invoke(constellationNameList)
             }
 
 

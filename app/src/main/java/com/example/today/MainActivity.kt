@@ -6,10 +6,10 @@ import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
-import com.example.today.mydata.WeatherData
 import com.example.today.okhttp.Constellation
 import com.example.today.okhttp.Weather
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_constellation.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
     private var fragmentCon = FragmentConstellation()
     private var fragmentEar = FragmentEarthquake()
 
-    var weatherDataList = ArrayList<WeatherData>()
-    var okhttp = Weather()
+    //    var weatherDataList = ArrayList<WeatherData>()
+    var weather = Weather()
     var constellation = Constellation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +27,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        constellation.connect()
         getJsonWeatherCityName()
-        okhttp.connect()
+        getJsonConstellationName()
+        weather.connect()
+        constellation.connect()
         initView()
     }
 
 
     fun getJsonWeatherCityName() {
-        okhttp.dataList = {
+        weather.weatherList = {
             runOnUiThread {
                 //                var SA = SunAdapter(list = it)
 //                rv_sun.layoutManager = LinearLayoutManager(this)
@@ -44,6 +45,18 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+
+    }
+
+    fun getJsonConstellationName() {
+        constellation.constellationList = {
+            runOnUiThread {
+                tv_conName.text = it[0]
+
+
+            }
+        }
+
 
     }
 

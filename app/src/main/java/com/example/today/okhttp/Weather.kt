@@ -11,10 +11,10 @@ import java.io.IOException
 
 
 class Weather {
-    //inline 多次調用時可用(目前還沒更好的解釋)，reified具體化T參數，
+
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
-    lateinit var dataList: (ArrayList<String>) -> Unit
+    lateinit var weatherList: (ArrayList<String>) -> Unit
     fun connect() {
         val api = API()
         val url = api.WeatherAPI
@@ -29,6 +29,7 @@ class Weather {
 
         //向服務端請求傳回資料(get同步方法)
 //        val response = client.newCall(request).execute()
+
 
 //        activity?.runOnUiThread { textView.text = responseStr }
 
@@ -71,7 +72,7 @@ class Weather {
                 println("***************** $locationNameList")
 
 
-                dataList.invoke(locationNameList)
+                weatherList.invoke(locationNameList)
 
 
                 var value = ""
@@ -89,7 +90,6 @@ class Weather {
                     }
                 }
 
-//                val data = Gson().fromJson<ArrayList<WeatherData>>(responseStr)
 
 //                val ooList: (WeatherData) -> Unit
                 val data = Gson().fromJson(responseStr, WeatherData::class.java)
