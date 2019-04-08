@@ -10,7 +10,7 @@ import org.json.JSONObject
 import java.io.IOException
 
 
-class OKhttp {
+class Weather {
     //inline 多次調用時可用(目前還沒更好的解釋)，reified具體化T參數，
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
@@ -47,6 +47,8 @@ class OKhttp {
                 val responseStr = response.body()!!.string()
 
                 var myResponse = JSONObject(responseStr)
+
+                println("11111111111$myResponse")
 
                 var records = myResponse.getJSONObject("records")
                 var location = records.getJSONArray("location")

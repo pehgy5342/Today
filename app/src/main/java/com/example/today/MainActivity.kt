@@ -1,20 +1,15 @@
 package com.example.today
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-
 import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
 import com.example.today.mydata.WeatherData
-import com.example.today.okhttp.OKhttp
+import com.example.today.okhttp.Constellation
+import com.example.today.okhttp.Weather
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_weather.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private var fragmentEar = FragmentEarthquake()
 
     var weatherDataList = ArrayList<WeatherData>()
-    var okhttp = OKhttp()
-    var position = 0
+    var okhttp = Weather()
+    var constellation = Constellation()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        constellation.connect()
         getJsonWeatherCityName()
         okhttp.connect()
         initView()

@@ -38,7 +38,7 @@ dependencies {
     //Gson
     implementation "com.google.code.gson:gson:2.8.2"
 
-    //OKhttp
+    //Weather
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 
 
