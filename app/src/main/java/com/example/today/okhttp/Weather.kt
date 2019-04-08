@@ -14,7 +14,7 @@ class Weather {
 
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
-    lateinit var weatherList: (ArrayList<String>) -> Unit
+     var weatherList: ((ArrayList<String>) -> Unit)? = null
     fun connect() {
         val api = API()
         val url = api.WeatherAPI
@@ -61,50 +61,38 @@ class Weather {
                 var locationNameList = ArrayList<String>()
                 for (i in 0 until location.length()) {
                     var locationName = location.getJSONObject(i).getString("locationName")
-                    println("***************** $locationName")
-                    var weatherElement = location.getJSONObject(i).getJSONArray("weatherElement")
-                    println("***************** $weatherElement")
-
+                    println("oooooooooooooo $locationName")
 
                     locationNameList.add(locationName)
 
                 }
                 println("***************** $locationNameList")
 
+                weatherList!!.invoke(locationNameList)
 
-                weatherList.invoke(locationNameList)
 
-
-                var value = ""
-                var unit = ""
-
-                try {
-
+//                var value = ""
+//                var unit = ""
+//                try {
 //                        value = location.getJSONObject(i).getString("parameterValue")
-
-                } catch (e: Exception) {
-                    try {
+//                } catch (e: Exception) {
+//                    try {
 //                            unit = location.getJSONObject(i).getString("parameterValue")
-
-                    } catch (e: Exception) {
-                    }
-                }
-
-
-//                val ooList: (WeatherData) -> Unit
-                val data = Gson().fromJson(responseStr, WeatherData::class.java)
-                var cityList = arrayOfNulls<String>(data.records.location.size)
+//                    } catch (e: Exception) {
+//                    }
+//                }
 
 
-                Log.i("6666666", "$cityList")
-                for (i in 0 until data.records.location.size) {
-                    cityList[i] = "\n縣市:${data.records.location[i].locationName}"
-
-
-                    Log.i("888888888", "${cityList[i]}")
-
-                }
-                Log.i("888888888", cityList.toString())
+//                val data = Gson().fromJson(responseStr, WeatherData::class.java)
+//                var cityList = arrayOfNulls<String>(data.records.location.size)
+//
+//
+//                Log.i("6666666", "$cityList")
+//                for (i in 0 until data.records.location.size) {
+//                    cityList[i] = "\n縣市:${data.records.location[i].locationName}"
+//                    Log.i("888888888", "${cityList[i]}")
+//                }
+//                Log.i("888888888", cityList.toString())
 
             }
 

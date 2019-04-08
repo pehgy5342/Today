@@ -56,17 +56,24 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_temp" android:layout_marginEnd="112dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="12dp"/>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_searchCity"
-                app:backgroundTint="@color/design_default_color_background"
-                android:src="@drawable/searchcity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:elevation="0dp"
+        <Button
+                android:id="@+id/btn_searchCity"
+                android:background="@drawable/searchcity"
+                android:layout_width="53dp"
+                android:layout_height="65dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="64dp"/>
+                android:layout_marginBottom="64dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/fab_searchCity"-->
+        <!--app:backgroundTint="@color/mtrl_dark_on_primary_disabled"-->
+        <!--android:src="@drawable/searchcity"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--app:elevation="0dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:layout_marginBottom="64dp"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -31,7 +31,7 @@ class FragmentWeather : Fragment() {
         // Inflate the layout for this fragment
         fragView = inflater.inflate(R.layout.fragment_weather, container, false)
 
-        fragView.fab_searchCity.setOnClickListener {
+        fragView.btn_searchCity.setOnClickListener {
             AlertDialog.Builder(fragView.context)
                 .setTitle("請選擇縣市")
                 .setIcon(R.drawable.taiwanflag2)

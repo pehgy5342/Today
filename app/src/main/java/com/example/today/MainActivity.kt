@@ -2,6 +2,9 @@ package com.example.today
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.today.adapter.ConstellationAdapter
 import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
@@ -48,11 +51,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     fun getJsonConstellationName() {
         constellation.constellationList = {
             runOnUiThread {
-                tv_conName.text = it[0]
-
+//                tv_conName.text = it[0]
 
             }
         }
@@ -77,18 +80,10 @@ class MainActivity : AppCompatActivity() {
 
     fun setTabIcon() {
 
-        val tabIcon: IntArray = intArrayOf(
-            R.drawable.sun,
-            R.drawable.planets,
-            R.drawable.earth
-
-
-        )
-
+        val tabIcon: IntArray = intArrayOf(R.drawable.sun, R.drawable.planets, R.drawable.earth)
         tabLayout.getTabAt(0)!!.setIcon(tabIcon[0])
         tabLayout.getTabAt(1)!!.setIcon(tabIcon[1])
         tabLayout.getTabAt(2)!!.setIcon(tabIcon[2])
-
 
     }
 }

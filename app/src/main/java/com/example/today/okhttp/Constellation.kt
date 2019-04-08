@@ -10,7 +10,7 @@ import java.io.IOException
 
 class Constellation {
 
-    lateinit var constellationList: (ArrayList<String>) -> Unit
+     var constellationList:((ArrayList<String>) -> Unit)?  = null
     //inline 多次調用時可用(目前還沒更好的解釋)，reified具體化T參數，
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
@@ -39,7 +39,6 @@ class Constellation {
 
                 val responseStr = response.body()!!.string()
 
-
                 var myResponse = JSONArray(responseStr)
 
 
@@ -55,7 +54,7 @@ class Constellation {
                 }
                 println("cccccccc$constellationNameList")
 
-                constellationList.invoke(constellationNameList)
+                constellationList!!.invoke(constellationNameList)
             }
 
 
