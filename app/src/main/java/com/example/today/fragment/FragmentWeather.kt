@@ -10,8 +10,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.today.R
+import com.example.today.okhttp.Weather
+import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import javax.security.auth.Destroyable
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +37,8 @@ class FragmentWeather : Fragment() {
         // Inflate the layout for this fragment
         fragView = inflater.inflate(R.layout.fragment_weather, container, false)
 
+
+
         fragView.btn_searchCity.setOnClickListener {
             AlertDialog.Builder(fragView.context)
                 .setTitle("請選擇縣市")
@@ -40,6 +48,7 @@ class FragmentWeather : Fragment() {
                     position = i
                 }
                 .setPositiveButton("確定") { dialog, which ->
+
                 }
                 .setNegativeButton("取消") { dialog, which ->
                     //Toast.makeText(this, "已取消", Toast.LENGTH_SHORT).show()
@@ -52,8 +61,20 @@ class FragmentWeather : Fragment() {
                 }
                 .create().show()
         }
+//        main()
         return fragView
     }
+
+//    fun main() {
+//
+//        val current = LocalDateTime.now()
+//
+//        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+//        val formatted = current.format(formatter)
+//
+//        fragView.tv_time.text = formatted
+//
+//    }
 
 
 }
