@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.today.R
+import com.example.today.adapter.WeatherWeekAdapter
 import com.example.today.okhttp.Weather
 import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
@@ -61,20 +64,17 @@ class FragmentWeather : Fragment() {
                 }
                 .create().show()
         }
-//        main()
+        initView(fragView)
         return fragView
     }
 
-//    fun main() {
-//
-//        val current = LocalDateTime.now()
-//
-//        val formatter = DateTimeFormatter.ofPattern("HH:mm")
-//        val formatted = current.format(formatter)
-//
-//        fragView.tv_time.text = formatted
-//
-//    }
+    fun initView(view: View) {
+        val weekAdapter = WeatherWeekAdapter()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_weatherWeek)
+        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = weekAdapter
+
+    }
 
 
 }

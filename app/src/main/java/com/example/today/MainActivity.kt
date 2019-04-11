@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        getJsonWeatherCityName()
+        getJsonWeather()
         getJsonConstellationName()
         weather.connect()
         constellation.connect()
@@ -36,60 +36,65 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun getJsonWeatherCityName() {
-        weather.weatherLocationNameList = {
-            runOnUiThread {
-                tv_cityName.text = it[0]
-
+    fun getJsonWeather() {
+//        weather.weatherLocationNameList = {
+//            runOnUiThread {
+//                tv_cityName.text = it[0]
+//
 //                var SA = SunAdapter(list = it)
 //                rv_sun.layoutManager = LinearLayoutManager(this)
 //                rv_sun.adapter = SA
-            }
-
-
-        }
-
+//            }
+//
+//
+//        }
 
 
         weather.weatherElementList = {
             runOnUiThread {
 
 
-                if (it[0] == "晴時多雲") {
+                if (it[1] == "晴時多雲") {
                     Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
-                } else if (it[0] == "多雲") {
+                } else if (it[1] == "多雲") {
                     Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
-                } else if (it[0] == "多雲短暫陣雨") {
+                } else if (it[1] == "多雲短暫陣雨") {
                     Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
-                } else if (it[0] == "短暫陣雨") {
+                } else if (it[1] == "短暫陣雨") {
                     Glide.with(this).load(R.drawable.rain).into(iv_Wx)
+                } else if (it[1] == "陰") {
+                    Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
                 }
 
 
-                Glide.with(this).load(R.drawable.pop).into(iv_PoP)
-                Glide.with(this).load(R.drawable.max_t).into(iv_AT)
-                Glide.with(this).load(R.drawable.min_t).into(iv_CI)
-//                Glide.with(this).load(R.drawable.max_t).into(iv_maxT)
-//                Glide.with(this).load(R.drawable.min_t).into(iv_minT)
+
+                Glide.with(this).load(R.drawable.at).into(iv_AT)
 
 
-                tv_Wx.text = it[0]
-                tv_AT.text = "體感 ${it[1]}°C"
-                tv_T.text = "${it[2]} °C"
-                tv_CI.text = it[3]
-                tv_PoP6h.text = "降雨量 ${it[1]}%"
+                if (it[4] == "舒適") {
+                    Glide.with(this).load(R.drawable.cool).into(iv_CI)
+                } else if (it[4] == "悶熱") {
+                    Glide.with(this).load(R.drawable.hot).into(iv_CI)
+                } else {
+                    Glide.with(this).load(R.drawable.fit).into(iv_CI)
+                }
 
-//                tv_MinT.text = "最低溫度 ${it[2]}°C"
-//                tv_MaxT.text = "最高溫度 ${it[4]}°C"
+
+                Glide.with(this).load(R.drawable.pop).into(iv_PoP6h)
+
+                tv_cityName.text = it[0]
+                tv_Wx.text = it[1]
+                tv_AT.text = "體感 ${it[2]}°C"
+                tv_T.text = "${it[3]} °C"
+                tv_CI.text = it[4]
+                tv_PoP6h.text = "降雨量 ${it[5]}%"
+//                tv_startTime.text = it[6]
+
 
             }
 
         }
 
-    }
-
-    fun test() {
-        fragmentWea.fragmentManager
     }
 
 

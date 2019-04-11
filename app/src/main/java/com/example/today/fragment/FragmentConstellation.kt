@@ -31,6 +31,8 @@ class FragmentConstellation : Fragment() {
     }
 
 
+
+
     fun conView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_constellation)
         val conAdapter = ConstellationAdapter()

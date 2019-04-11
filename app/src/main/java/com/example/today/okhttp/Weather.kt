@@ -13,7 +13,6 @@ class Weather {
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
     var weatherLocationNameList: ((ArrayList<String>) -> Unit)? = null
-    var weatherTimeList: ((ArrayList<String>) -> Unit)? = null
     var weatherElementList: ((ArrayList<String>) -> Unit)? = null
     fun connect() {
         val api = API()
@@ -47,16 +46,21 @@ class Weather {
                 //取得回傳資料的內容，.string()是指並不是轉字串而是回傳response
                 val responseStr = response.body()!!.string()
 
-                var myResponse = JSONObject(responseStr)
+                val myResponse = JSONObject(responseStr)
 
                 println("11111111111$myResponse")
 
                 val records = myResponse.getJSONObject("records")
                 val locations = records.getJSONArray("locations")
                 val location = locations.getJSONObject(0).getJSONArray("location")
-                val weatherElement = location.getJSONObject(4).getJSONArray("weatherElement")
+                val weatherElement = location.getJSONObject(0).getJSONArray("weatherElement")
 
                 val elementList = ArrayList<String>()
+
+                val locationName = location.getJSONObject(0).getString("locationName")
+
+//                val startTime =
+//                    weatherElement.getJSONObject(0).getJSONArray("time").getJSONObject(0).getString("startTime")
 
                 val Wx =
                     weatherElement.getJSONObject(0).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
@@ -65,7 +69,7 @@ class Weather {
                 val AT =
                     weatherElement.getJSONObject(1).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
                         .getJSONObject(0).getString("value")
-println("aaaaaaaaaaa$AT")
+                println("aaaaaaaaaaa$AT")
 
                 val T =
                     weatherElement.getJSONObject(2).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
@@ -80,29 +84,32 @@ println("aaaaaaaaaaa$AT")
                         .getJSONObject(0).getString("value")
 
 
+                elementList.add(locationName)
                 elementList.add(Wx)
                 elementList.add(AT)
                 elementList.add(T)
                 elementList.add(CI)
                 elementList.add(PoP6h)
+//                elementList.add(startTime)
                 weatherElementList!!.invoke(elementList)
 
-         println("eeeeeeeee$elementList")
+                println("eeeeeee$elementList")
 
 
-                var locationNameList = ArrayList<String>()
-                for (i in 0 until location.length()) {
-//                    var locationName = location.getJSONObject(i).getString("locationName")
+//                val locationNameList = ArrayList<String>()
+//                for (i in 0 until location.length()) {
+////                    var locationName = location.getJSONObject(i).getString("locationName")
+//
+//                    val locationName = location.getJSONObject(i).getString("locationName")
+//                    println("oooooooooooooo $locationName")
+//
+//                    locationNameList.add(locationName)
+//
+//                }
 
-                    var locationName = location.getJSONObject(i).getString("locationName")
-                    println("oooooooooooooo $locationName")
-
-                    locationNameList.add(locationName)
-
-                }
-                println("***************** $locationNameList")
-
-                weatherLocationNameList!!.invoke(locationNameList)
+//                println("***************** $locationNameList")
+//
+//                weatherLocationNameList!!.invoke(locationNameList)
 
 
             }

@@ -67,7 +67,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/tv_Wx"
                 android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_Wx"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="16dp"/>
 
 
         <TextView
@@ -77,18 +77,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/iv_Wx"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_AT" android:layout_marginStart="8dp"/>
+                app:layout_constraintBottom_toBottomOf="@+id/iv_AT"
+                android:layout_marginStart="8dp"/>
 
 
         <ImageView
-                android:id="@+id/iv_PoP"
+                android:id="@+id/iv_PoP6h"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_PoP6h"
                 app:layout_constraintEnd_toStartOf="@+id/tv_PoP6h"
                 android:layout_marginEnd="6dp"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="16dp"/>
         <TextView
                 android:id="@+id/tv_PoP6h"
                 android:text="降雨量: %"
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_Wx"
-                app:layout_constraintStart_toEndOf="@+id/iv_PoP"
+                app:layout_constraintStart_toEndOf="@+id/iv_PoP6h"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_CI"
                 app:layout_constraintVertical_bias="1.0" android:layout_marginStart="8dp"/>
 
@@ -105,9 +106,9 @@
                 android:id="@+id/iv_AT"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_AT"
-                android:layout_marginStart="60dp"
-                app:layout_constraintStart_toEndOf="@+id/tv_Wx"/>
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_T"
+                app:layout_constraintStart_toStartOf="@+id/iv_CI"/>
 
         <TextView
                 android:id="@+id/tv_AT"
@@ -126,7 +127,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_CI"
-                app:layout_constraintStart_toStartOf="@+id/iv_AT"/>
+                android:layout_marginStart="32dp" app:layout_constraintStart_toEndOf="@+id/tv_PoP6h"/>
 
 
         <TextView
@@ -140,18 +141,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_AT"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintHorizontal_bias="0.0" android:layout_marginStart="8dp"/>
+                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginStart="8dp"/>
 
-        <!--<androidx.recyclerview.widget.RecyclerView-->
-        <!--android:id="@+id/rv_weather"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--tools:layout_editor_absoluteX="0dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/tb_weather">-->
+        <ImageView
+                android:id="@+id/iv_temp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/rv_weatherWeek"/>
+
+        <ImageView
+                android:id="@+id/iv_PoP"
+                android:layout_width="30dp"
+                android:layout_height="30dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_temp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_weatherWeek"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_CI" app:layout_constraintStart_toEndOf="@+id/iv_PoP"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent">
 
 
-        <!--</androidx.recyclerview.widget.RecyclerView>-->
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
                 android:id="@+id/btn_searchCity"
