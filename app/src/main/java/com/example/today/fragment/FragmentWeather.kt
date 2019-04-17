@@ -12,15 +12,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.today.R
 import com.example.today.adapter.WeatherWeekAdapter
-import com.example.today.okhttp.Weather
-import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import javax.security.auth.Destroyable
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,7 +65,7 @@ class FragmentWeather : Fragment() {
     fun initView(view: View) {
         val weekAdapter = WeatherWeekAdapter()
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_weatherWeek)
-        recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = weekAdapter
 
     }

@@ -7,8 +7,9 @@ import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
+import com.example.today.mydata.WeatherData
 import com.example.today.okhttp.Constellation
-import com.example.today.okhttp.Weather
+import com.example.today.okhttp.WeatherToday
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 
@@ -19,8 +20,9 @@ class MainActivity : AppCompatActivity() {
     private var fragmentEar = FragmentEarthquake()
 
     //    var weatherDataList = ArrayList<WeatherData>()
-    var weather = Weather()
+    var weather = WeatherToday()
     var constellation = Constellation()
+    val aWeather: WeatherData.Aweather? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,63 +39,70 @@ class MainActivity : AppCompatActivity() {
 
 
     fun getJsonWeather() {
-//        weather.weatherLocationNameList = {
-//            runOnUiThread {
+        weather.weatherList = {
+            runOnUiThread {
+
+                tv_cityName.text = it[0].locationName
+                tv_T.text = it[0].T
+                tv_Wx.text = it[0].Wx
+                tv_AT.text = it[0].AT
+                tv_PoP6h.text = it[0].PoP6h
+                tv_CI.text = it[0].CI
+
 //                tv_cityName.text = it[0]
 //
 //                var SA = SunAdapter(list = it)
 //                rv_sun.layoutManager = LinearLayoutManager(this)
 //                rv_sun.adapter = SA
+            }
+        }
+
+
+//        weather.weatherElementList = {
+//            runOnUiThread {
+//
+//
+//                when (it[0].Wx) {
+//                    "晴時多雲" ->
+//                        Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
+//                    "多雲" ->
+//                        Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
+//                    "多雲短暫陣雨" ->
+//                        Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
+//                    "短暫陣雨" ->
+//                        Glide.with(this).load(R.drawable.rain).into(iv_Wx)
+//                    "陰" ->
+//                        Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
+//
+//                }
+//
+//
+//                Glide.with(this).load(R.drawable.at).into(iv_AT)
+//
+//
+//                when (it[0].CI) {
+//                    "舒適" -> Glide.with(this).load(R.drawable.cool).into(iv_CI)
+//                    "悶熱" -> Glide.with(this).load(R.drawable.hot).into(iv_CI)
+//                    else -> Glide.with(this).load(R.drawable.fit).into(iv_CI)
+//                }
+//
+//
+//
+//
+//                Glide.with(this).load(R.drawable.pop).into(iv_PoP6h)
+//
+////                tv_cityName.text = aWeather.locationName
+////                tv_Wx.text = aWeather.Wx
+////                tv_AT.text = "體感 ${aWeather.AT}°C"
+////                tv_T.text = "${aWeather.T} °C"
+////                tv_CI.text = aWeather.CI
+////                tv_PoP6h.text = "降雨量 ${aWeather.PoP6h}%"
+////                tv_startTime.text = it[6]
+//
+//
 //            }
 //
-//
 //        }
-
-
-        weather.weatherElementList = {
-            runOnUiThread {
-
-
-                if (it[1] == "晴時多雲") {
-                    Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
-                } else if (it[1] == "多雲") {
-                    Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
-                } else if (it[1] == "多雲短暫陣雨") {
-                    Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
-                } else if (it[1] == "短暫陣雨") {
-                    Glide.with(this).load(R.drawable.rain).into(iv_Wx)
-                } else if (it[1] == "陰") {
-                    Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
-                }
-
-
-
-                Glide.with(this).load(R.drawable.at).into(iv_AT)
-
-
-                if (it[4] == "舒適") {
-                    Glide.with(this).load(R.drawable.cool).into(iv_CI)
-                } else if (it[4] == "悶熱") {
-                    Glide.with(this).load(R.drawable.hot).into(iv_CI)
-                } else {
-                    Glide.with(this).load(R.drawable.fit).into(iv_CI)
-                }
-
-
-                Glide.with(this).load(R.drawable.pop).into(iv_PoP6h)
-
-                tv_cityName.text = it[0]
-                tv_Wx.text = it[1]
-                tv_AT.text = "體感 ${it[2]}°C"
-                tv_T.text = "${it[3]} °C"
-                tv_CI.text = it[4]
-                tv_PoP6h.text = "降雨量 ${it[5]}%"
-//                tv_startTime.text = it[6]
-
-
-            }
-
-        }
 
     }
 

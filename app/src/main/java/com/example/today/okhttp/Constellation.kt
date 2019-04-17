@@ -29,13 +29,13 @@ class Constellation {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
 
-                Log.d("msg", "Fail")
+                Log.d("msg from Constellation", "Fail from Constellation")
 
             }
 
             override fun onResponse(call: Call, response: Response) {
 
-                Log.d("msg", "success")
+
 
                 val responseStr = response.body()!!.string()
 
