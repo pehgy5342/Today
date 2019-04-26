@@ -15,8 +15,7 @@ class WeatherToday {
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
     var weatherList: ((ArrayList<WeatherData.Aweather>) -> Unit)? = null
-    var weatherElementList: ((ArrayList<WeatherData.Aweather>) -> Unit)? = null
-    var weatherResponseList: ((ArrayList<JSONObject>) -> Unit)? = null
+
     fun connect() {
         val api = API()
         val url = api.WeatherAPI
@@ -52,56 +51,23 @@ class WeatherToday {
 
                 responseList.add(myResponse)
 
-                weatherResponseList?.invoke(responseList)
+//                weatherResponseList?.invoke(responseList)
 
                 println("11111111111$myResponse")
 
-//val c = WeatherExtraction().extraction(jaonArr)
+//                val c = WeatherExtraction().extraction(jaonArr)
                 val records = myResponse.getJSONObject("records")
                 val locations = records.getJSONArray("locations")
                 val location = locations.getJSONObject(0).getJSONArray("location")
-//                val weatherElement = location.getJSONObject(0).getJSONArray("weatherElement")
-//
-//                val elementList = ArrayList<WeatherData.Aweather>()
-//
-//                val locationName = location.getJSONObject(0).getString("locationName")
-//
-//
-//                val Wx =
-//                    weatherElement.getJSONObject(0).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
-//                        .getJSONObject(0).getString("value")
-//
-//                val AT =
-//                    weatherElement.getJSONObject(1).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
-//                        .getJSONObject(0).getString("value")
-//                println("aaaaaaaaaaa$AT")
-//
-//                val T =
-//                    weatherElement.getJSONObject(2).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
-//                        .getJSONObject(0).getString("value")
-//
-//                val CI =
-//                    weatherElement.getJSONObject(3).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
-//                        .getJSONObject(1).getString("value")
-//
-//                val PoP6h =
-//                    weatherElement.getJSONObject(4).getJSONArray("time").getJSONObject(0).getJSONArray("elementValue")
-//                        .getJSONObject(0).getString("value")
 
-
-//                elementList.add(WeatherData.Aweather(locationName, Wx, AT, T, CI, PoP6h))
-//
-//                weatherElementList!!.invoke(elementList)
-//
-//                println("eeeeeee$elementList")
 
 
                 val locationNameList = ArrayList<WeatherData.Aweather>()
                 for (i in 0 until location.length()) {
-//                    var locationName = location.getJSONObject(i).getString("locationName")
+
 
                     val locationName = location.getJSONObject(i).getString("locationName")
-                    println("oooooooooooooo $locationName")
+//                    println("oooooooooooooo $locationName")
 
                     val Wx =
                         location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(0).getJSONArray("time")
@@ -125,7 +91,6 @@ class WeatherToday {
 
 
                     locationNameList.add(WeatherData.Aweather(locationName, Wx, AT, T, CI, PoP6h))
-
 
 
                 }

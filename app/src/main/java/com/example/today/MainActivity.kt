@@ -1,17 +1,16 @@
 package com.example.today
 
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
-import com.example.today.mydata.WeatherData
 import com.example.today.okhttp.Constellation
 import com.example.today.okhttp.WeatherToday
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_weather.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,11 +18,10 @@ class MainActivity : AppCompatActivity() {
     private var fragmentCon = FragmentConstellation()
     private var fragmentEar = FragmentEarthquake()
 
-    //    var weatherDataList = ArrayList<WeatherData>()
     var weather = WeatherToday()
     var constellation = Constellation()
-    val aWeather: WeatherData.Aweather? = null
 
+    val manager = supportFragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,31 +33,37 @@ class MainActivity : AppCompatActivity() {
         weather.connect()
         constellation.connect()
         initView()
+        jsonBundle()
     }
 
+//    inline fun <reified T> Gson.toJson(json: String) = this.toJson<T>(json, object : TypeToken<T>() {}.type)
 
-    fun getJsonWeather() {
+
+    fun jsonBundle() {
+
+        val transaction = manager.beginTransaction()
+
+        transaction.add(0, fragmentWea).commit()
+        val bundle = Bundle()
+        val gson = Gson()
+
         weather.weatherList = {
-            runOnUiThread {
+            println("wwwwwwwwwwwww${it}")
+            val json = gson.toJson(it)
+            bundle.putString("weather", json)
+            fragmentWea.arguments = bundle
 
-                tv_cityName.text = it[0].locationName
-                tv_T.text = it[0].T
-                tv_Wx.text = it[0].Wx
-                tv_AT.text = it[0].AT
-                tv_PoP6h.text = it[0].PoP6h
-                tv_CI.text = it[0].CI
 
-//                tv_cityName.text = it[0]
-//
-//                var SA = SunAdapter(list = it)
-//                rv_sun.layoutManager = LinearLayoutManager(this)
-//                rv_sun.adapter = SA
-            }
+            println("bbbbbbbbbbbbbbbbbbb$bundle")
         }
 
 
-//        weather.weatherElementList = {
-//            runOnUiThread {
+    }
+
+    fun getJsonWeather() {
+
+        weather.weatherList = {
+            //            runOnUiThread {
 //
 //
 //                when (it[0].Wx) {
@@ -73,6 +77,8 @@ class MainActivity : AppCompatActivity() {
 //                        Glide.with(this).load(R.drawable.rain).into(iv_Wx)
 //                    "陰" ->
 //                        Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
+//                    "短暫陣雨或雷雨" ->
+//                        Glide.with(this).load(R.drawable.rain_thunder).into(iv_Wx)
 //
 //                }
 //
@@ -87,22 +93,20 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //
-//
-//
 //                Glide.with(this).load(R.drawable.pop).into(iv_PoP6h)
 //
-////                tv_cityName.text = aWeather.locationName
-////                tv_Wx.text = aWeather.Wx
-////                tv_AT.text = "體感 ${aWeather.AT}°C"
-////                tv_T.text = "${aWeather.T} °C"
-////                tv_CI.text = aWeather.CI
-////                tv_PoP6h.text = "降雨量 ${aWeather.PoP6h}%"
-////                tv_startTime.text = it[6]
+//
+//                tv_cityName.text = it[0].locationName
+//                tv_T.text = "${it[0].T}°C"
+//                tv_Wx.text = it[0].Wx
+//                tv_AT.text = "體感 ${it[0].AT}°C"
+//                tv_PoP6h.text = "降雨量 ${it[0].PoP6h}%"
+//                tv_CI.text = it[0].CI
 //
 //
 //            }
-//
-//        }
+        }
+
 
     }
 
@@ -120,12 +124,7 @@ class MainActivity : AppCompatActivity() {
 
     fun initView() {
 
-        val tabAdapter = MyViewPagerAdapter(supportFragmentManager)
-
-        tabAdapter.addFragment(fragmentWea, "天氣")
-        tabAdapter.addFragment(fragmentCon, "星座")
-        tabAdapter.addFragment(fragmentEar, "地震")
-
+        val tabAdapter = MyViewPagerAdapter(manager)
         viewPager.adapter = tabAdapter
         tabLayout.setupWithViewPager(viewPager)
         setTabIcon()
