@@ -97,7 +97,7 @@ class WeatherToday {
 
                 println("***************** $locationNameList")
 
-                weatherList!!.invoke(locationNameList)
+//                locationWeatherList!!.invoke(weatherList)
 
 
             }

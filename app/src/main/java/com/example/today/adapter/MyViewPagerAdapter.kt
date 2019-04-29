@@ -8,39 +8,27 @@ import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
 
 class MyViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-
+    val fragmentList: ArrayList<Fragment> = ArrayList()
+    val titleList: ArrayList<String> = ArrayList()
 
     override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> {
-                FragmentWeather()
-            }
-            1 -> {
-                FragmentConstellation()
-            }
-            else ->{
-
-                FragmentEarthquake()
-            }
-
-        }
-
-
+        return fragmentList[position]
     }
 
     override fun getCount(): Int {
-        return 3
+        return fragmentList.size
     }
+
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return when(position){
-            0->"天氣"
-            1->"星座"
-            else->"地震"
-        }
+        return titleList[position]
 
     }
 
+    fun addFragment(fragment: Fragment, title: String) {
+        fragmentList.add(fragment)
+        titleList.add(title)
+    }
 
 
 }

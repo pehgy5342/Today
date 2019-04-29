@@ -21,7 +21,7 @@ class WeatherWeekAdapter : RecyclerView.Adapter<WeatherWeekAdapter.CustomHolder>
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.weather_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.weather_week_item, parent, false)
         return CustomHolder(view)
     }
 
