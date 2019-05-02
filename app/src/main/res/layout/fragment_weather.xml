@@ -36,8 +36,8 @@
 
         <TextView
                 android:id="@+id/tv_cityName"
-                android:text="台南市"
-                android:textSize="30dp"
+                android:text="@string/cityName"
+                android:textSize="30sp"
                 android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,8 +47,8 @@
 
         <TextView
                 android:id="@+id/nowWeather"
-                android:text="現在溫度"
-                android:textSize="20dp"
+                android:text="@string/temp"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -57,8 +57,8 @@
 
         <TextView
                 android:id="@+id/tv_T"
-                android:text="0 °C"
-                android:textSize="70dp"
+                android:text="@string/T"
+                android:textSize="70sp"
                 android:textColor="#2196F3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,21 +72,20 @@
                 android:layout_height="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_Wx"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_Wx"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="24dp"/>
 
 
         <TextView
                 android:id="@+id/tv_Wx"
-                android:text="天氣現象"
-                android:textSize="23dp"
+                android:text="@string/Wx"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/iv_Wx"
-                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_CI" app:layout_constraintEnd_toStartOf="@+id/iv_CI"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="8dp"/>
 
 
         <ImageView
@@ -96,35 +95,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_PoP6h"
                 app:layout_constraintEnd_toStartOf="@+id/tv_PoP6h"
-                android:layout_marginEnd="6dp"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="24dp"/>
         <TextView
                 android:id="@+id/tv_PoP6h"
-                android:text="降雨量: %"
-                android:textSize="23dp"
+                android:text="@string/Pop6h"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_Wx"
                 app:layout_constraintStart_toEndOf="@+id/iv_PoP6h"
-                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_AT" app:layout_constraintVertical_bias="1.0"
-                app:layout_constraintEnd_toStartOf="@+id/iv_AT" android:layout_marginEnd="9dp"/>
+                app:layout_constraintEnd_toStartOf="@+id/iv_AT" android:layout_marginEnd="8dp"/>
 
 
         <ImageView
                 android:id="@+id/iv_CI"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_CI" app:layout_constraintStart_toEndOf="@+id/tv_Wx"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/tv_CI" android:layout_marginEnd="8dp"/>
 
 
         <TextView
                 android:id="@+id/tv_CI"
-                android:text="舒適度"
-                android:textSize="23dp"
+                android:text=""
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -137,13 +135,13 @@
                 android:layout_height="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_AT" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/iv_CI" app:layout_constraintVertical_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tv_PoP6h" android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_PoP6h" android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/tv_AT" android:layout_marginEnd="8dp"/>
 
         <TextView
                 android:id="@+id/tv_AT"
-                android:text="體感溫度 °C"
-                android:textSize="23dp"
+                android:text="@string/Pop6h"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"

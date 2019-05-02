@@ -26,6 +26,20 @@
         <item>連江縣</item>
     </string-array>
 
+    <string name="cityName">台南市</string>
+    <string name="temp">現在溫度</string>
+    <string name="T">0 °C</string>
+    <string name="Wx">天氣現象</string>
+    <string name="Pop6h">降雨量: %</string>
+    <string name="CI">舒適度</string>
+    <string name="AT">體感溫度 °C</string>
+
+
+    <string name="conTitle">星座</string>
+    <string name="conLucky">運勢</string>
+    <string name="conInfo">內容</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

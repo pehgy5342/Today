@@ -1,15 +1,18 @@
 package com.example.today.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.today.R
+import com.example.today.activity.ConstellationActivity
 import com.example.today.mydata.ConstellationData
 import kotlinx.android.synthetic.main.constellation_home_item.view.*
 
-class ConstellationAdapter : RecyclerView.Adapter<ConstellationAdapter.CustomHolder>() {
+class ConstellationAdapter(var list: ArrayList<ConstellationData.Data>) :
+    RecyclerView.Adapter<ConstellationAdapter.CustomHolder>() {
 
     val conList =
         arrayListOf(
@@ -36,6 +39,21 @@ class ConstellationAdapter : RecyclerView.Adapter<ConstellationAdapter.CustomHol
 
     override fun onBindViewHolder(holder: CustomHolder, position: Int) {
         holder.bind(conList[position])
+        holder.conItem.setOnClickListener {
+            val intent = Intent(it.context, ConstellationActivity::class.java)
+
+            val conName = conList[position].name
+            list.forEach {
+                if (it.name == conName) {
+                    intent.putExtra("Info", list)
+
+
+                }
+
+            }
+
+            it.context.startActivity(intent)
+        }
 
     }
 
@@ -44,6 +62,7 @@ class ConstellationAdapter : RecyclerView.Adapter<ConstellationAdapter.CustomHol
 
         val conImage = itemView.iv_constellation
         val conTitle = itemView.tv_constellation
+        val conItem = itemView.con_conItem
 
         fun bind(con: ConstellationData.Item) {
 

@@ -25,7 +25,7 @@ class FragmentEarthquake : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_earthquake, container, false)
+        return inflater.inflate(R.layout.fragment_daily, container, false)
     }
 
 

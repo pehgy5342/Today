@@ -27,18 +27,10 @@ import org.json.JSONObject
 import java.io.IOException
 import java.util.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
 class FragmentWeather : Fragment() {
+//    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
     lateinit var fragView: View
     var cityNameList = ArrayList<String>()
     var weatherList = ArrayList<WeatherData.Aweather>()
@@ -106,37 +98,31 @@ class FragmentWeather : Fragment() {
 
                     }
 
-//                    when (it.Wx) {
-//
-//                        "晴" ->
-//                            Glide.with(this).load(R.drawable.sun).into(iv_Wx)
-//                        "晴時多雲" ->
-//                            Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
-//                        "多雲" ->
-//                            Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
-//                        "多雲短暫陣雨" ->
-//                            Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
-//                        "短暫陣雨" ->
-//                            Glide.with(this).load(R.drawable.rain).into(iv_Wx)
-//                        "陰" ->
-//                            Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
-//                        "短暫陣雨或雷雨" ->
-//                            Glide.with(this).load(R.drawable.rain_thunder).into(iv_Wx)
-//                    }
-//
-//
-//
-//
-//                    Glide.with(this).load(R.drawable.at).into(iv_AT)
-//
-//
-//                    when (it.CI) {
-//                        "舒適" -> Glide.with(this).load(R.drawable.cool).into(iv_CI)
-//                        "悶熱" -> Glide.with(this).load(R.drawable.hot).into(iv_CI)
-//                        else -> Glide.with(this).load(R.drawable.fit).into(iv_CI)
-//                    }
-//
-//                    Glide.with(this).load(R.drawable.pop).into(iv_PoP6h)
+                    when (it.Wx) {
+
+                        "晴" ->
+                            Glide.with(this).load(R.drawable.sun).into(iv_Wx)
+                        "晴時多雲" ->
+                            Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
+                        "多雲" ->
+                            Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
+                        "多雲短暫陣雨" ->
+                            Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
+                        "短暫陣雨" ->
+                            Glide.with(this).load(R.drawable.rain).into(iv_Wx)
+                        "陰" ->
+                            Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
+                        "短暫陣雨或雷雨" ->
+                            Glide.with(this).load(R.drawable.rain_thunder).into(iv_Wx)
+                    }
+
+
+                    when (it.CI) {
+                        "舒適" -> Glide.with(this).load(R.drawable.cool).into(iv_CI)
+                        "悶熱" -> Glide.with(this).load(R.drawable.hot).into(iv_CI)
+                        else -> Glide.with(this).load(R.drawable.fit).into(iv_CI)
+                    }
+
                 }
             }
                 .setPositiveButton("確定") { dialog, which ->
@@ -219,15 +205,15 @@ class FragmentWeather : Fragment() {
                 val locations = records.getJSONArray("locations")
                 val location = locations.getJSONObject(0).getJSONArray("location")
 
-                for (i in 0 until location.length()) {
-
-                    val locationName = location.getJSONObject(i).getString("locationName")
-
-                    cityNameList.add(locationName)
-
-                }
-
-                println("cccccccccccc$cityNameList")
+//                for (i in 0 until location.length()) {
+//
+//                    val locationName = location.getJSONObject(i).getString("locationName")
+//
+//                    cityNameList.add(locationName)
+//
+//                }
+//
+//                println("cccccccccccc$cityNameList")
 
 
                 for (i in 0 until location.length()) {

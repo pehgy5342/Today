@@ -1,14 +1,14 @@
-package com.example.today
+package com.example.today.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.today.R
 import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
 import com.example.today.okhttp.Constellation
-import com.example.today.okhttp.WeatherToday
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 
@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
 
 
         getJsonWeather()
-//        getJsonConstellationName()
 
-//        constellation.connect()
         initView()
         fragmentWea.connect()
+        fragmentCon.connect()
     }
 //
 //    override fun onResume() {
@@ -72,6 +71,8 @@ class MainActivity : AppCompatActivity() {
 
 
                 when (it[0].Wx) {
+                    "晴" ->
+                        Glide.with(this).load(R.drawable.sun).into(iv_Wx)
                     "晴時多雲" ->
                         Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
                     "多雲" ->
@@ -116,16 +117,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    fun getJsonConstellationName() {
-//        constellation.constellationList = {
-//            runOnUiThread {
-//                //                tv_conName.text = it[0]
-//
-//            }
-//        }
-//
-//
-//    }
+
 
     fun initView() {
 
@@ -144,7 +136,11 @@ class MainActivity : AppCompatActivity() {
 
     fun setTabIcon() {
 
-        val tabIcon: IntArray = intArrayOf(R.drawable.sun, R.drawable.planets, R.drawable.earth)
+        val tabIcon: IntArray = intArrayOf(
+            R.drawable.sun,
+            R.drawable.planets,
+            R.drawable.earth
+        )
 
         tabLayout.getTabAt(0)!!.setIcon(tabIcon[0])
         tabLayout.getTabAt(1)!!.setIcon(tabIcon[1])

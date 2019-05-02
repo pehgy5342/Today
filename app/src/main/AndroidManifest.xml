@@ -11,9 +11,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-                  android:windowSoftInputMode="adjustPan"
-                  android:configChanges="orientation">
+        <activity android:name=".activity.ConstellationActivity">
+        </activity>
+        <activity
+                android:name=".activity.MainActivity"
+                android:configChanges="orientation"
+                android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
