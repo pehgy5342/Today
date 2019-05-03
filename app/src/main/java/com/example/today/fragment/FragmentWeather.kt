@@ -11,22 +11,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.today.R
-import com.example.today.adapter.WeatherWeekAdapter
 import com.example.today.mydata.API
 import com.example.today.mydata.WeatherData
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
-import java.util.ArrayList
-
+import java.util.*
 
 
 class FragmentWeather : Fragment() {
@@ -77,8 +71,7 @@ class FragmentWeather : Fragment() {
             builder.setSingleChoiceItems(list, 0) { dialogInterface: DialogInterface?, i: Int ->
 
                 val selectedCityName = list[i]
-                tv_cityName.text = selectedCityName
-//                var weatherInfo :WeatherData.Aweather? = null
+
 
                 Log.i("wwww", "$weatherList")
 

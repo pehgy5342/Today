@@ -1,20 +1,18 @@
 package com.example.today.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.today.R
-import com.example.today.activity.ConstellationActivity
 import com.example.today.mydata.ConstellationData
 import kotlinx.android.synthetic.main.constellation_home_item.view.*
 
-class ConstellationAdapter(var list: ArrayList<ConstellationData.Data>) :
+class ConstellationAdapter :
     RecyclerView.Adapter<ConstellationAdapter.CustomHolder>() {
 
-    val conList =
+    var conList =
         arrayListOf(
             ConstellationData.Item(R.drawable.aquarius, "水瓶座"),
             ConstellationData.Item(R.drawable.pisces, "雙魚座"),
@@ -30,6 +28,16 @@ class ConstellationAdapter(var list: ArrayList<ConstellationData.Data>) :
             ConstellationData.Item(R.drawable.capricorn, "摩羯座")
         )
 
+    interface OnItemClickListener{
+        fun onItemClick(name: String)
+    }
+    var mOnItemClickListener : OnItemClickListener? = null
+
+    fun setOnItemClickListener(mOnItemClickListener: OnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.constellation_home_item, parent, false)
         return CustomHolder(view)
@@ -40,19 +48,8 @@ class ConstellationAdapter(var list: ArrayList<ConstellationData.Data>) :
     override fun onBindViewHolder(holder: CustomHolder, position: Int) {
         holder.bind(conList[position])
         holder.conItem.setOnClickListener {
-            val intent = Intent(it.context, ConstellationActivity::class.java)
+            mOnItemClickListener?.onItemClick(conList[position].name)
 
-            val conName = conList[position].name
-            list.forEach {
-                if (it.name == conName) {
-                    intent.putExtra("Info", list)
-
-
-                }
-
-            }
-
-            it.context.startActivity(intent)
         }
 
     }

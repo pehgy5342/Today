@@ -1,6 +1,7 @@
 package com.example.today.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.today.R
+import com.example.today.activity.ConstellationActivity
 import com.example.today.adapter.ConstellationAdapter
 import com.example.today.mydata.API
 import com.example.today.mydata.ConstellationData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.activity_constellation.*
 import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
@@ -28,7 +31,7 @@ class FragmentConstellation : Fragment() {
     var constellationList = ArrayList<ConstellationData.Data>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val frgView = inflater.inflate(R.layout.fragment_constellation, container, false)
 
         conView(frgView)
@@ -38,10 +41,38 @@ class FragmentConstellation : Fragment() {
 
     fun conView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_constellation)
-        val conAdapter = ConstellationAdapter(list = constellationList)
+        val adapter = ConstellationAdapter()
+        val intent = Intent(this@FragmentConstellation.context, ConstellationActivity::class.java)
+        adapter.setOnItemClickListener(object : ConstellationAdapter.OnItemClickListener {
+            override fun onItemClick(name: String) {
+
+
+                println("987654${constellationList}")
+
+                constellationList.forEach {
+                    println("987654${constellationList}")
+                    Log.i("iiiiiii","$name..${it.name}")
+                    if (it.name.contains(name)) {
+                        println("DDDDDDDDD${it.DESC_WORK}")
+                        println("iiiiiiiiiiiiiii${it.name}")
+                        intent.putExtra("name", it.name)
+
+                        intent.putExtra("starMoney", it.STAR_MONEY)
+                        intent.putExtra("descMoney", it.DESC_MONEY)
+
+                    }
+
+                }
+                startActivity(intent)
+            }
+        })
+
+
+
         recyclerView.layoutManager = GridLayoutManager(context, 3) as RecyclerView.LayoutManager
-        recyclerView.adapter = conAdapter
+        recyclerView.adapter = adapter
     }
+
 
     fun connect() {
         val api = API()
