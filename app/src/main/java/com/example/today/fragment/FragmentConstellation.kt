@@ -71,21 +71,10 @@ class FragmentConstellation : Fragment() {
 
                             println("iiiiiiiiiiiiiii${it.name}")
 
-//                        bundle.putSerializable("key", constellationList)
-//
-//                        intent.putExtra("Bundle", bundle)
 
-                            intent.putExtra("key", constellationList)
+                            //使用Serializable自訂義類型的object整個intent
+                            intent.putExtra("object", it)
 
-//                            intent.putExtra("name", it.name)
-//                            intent.putExtra("starMoney", it.STAR_MONEY)
-//                            intent.putExtra("descMoney", it.DESC_MONEY)
-//                            intent.putExtra("starWork", it.STAR_WORK)
-//                            intent.putExtra("descWork", it.DESC_WORK)
-//                            intent.putExtra("starLove", it.STAR_LOVE)
-//                            intent.putExtra("descLove", it.DESC_LOVE)
-//                            intent.putExtra("starEntirety", it.STAR_ENTIRETY)
-//                            intent.putExtra("descEntirety", it.DESC_ENTIRETY)
 
                         }
                     }

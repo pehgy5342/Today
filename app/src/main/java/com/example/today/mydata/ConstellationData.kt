@@ -1,34 +1,36 @@
 package com.example.today.mydata
 
+import java.io.Serializable
+
 class ConstellationData {
 
     data class Data(
-        val name: String,
-        val TODAY_WORD: String,
-        val LUCKY_NUMERAL: String,
-        val LUCKY_COLOR: String,
-        val LUCKY_DIRECTION: String,
-        val LUCKY_TIME: String,
-        val LUCKY_ASTRO: String,
-        val STAR_ENTIRETY: String,
-        val DESC_ENTIRETY: String,
-        val STAR_LOVE: String,
-        val DESC_LOVE: String,
-        val STAR_WORK: String,
-        val DESC_WORK: String,
-        val STAR_MONEY: String,
-        val DESC_MONEY: String
+        var name: String,
+        var TODAY_WORD: String,
+        var LUCKY_NUMERAL: String,
+        var LUCKY_COLOR: String,
+        var LUCKY_DIRECTION: String,
+        var LUCKY_TIME: String,
+        var LUCKY_ASTRO: String,
+        var STAR_ENTIRETY: String,
+        var DESC_ENTIRETY: String,
+        var STAR_LOVE: String,
+        var DESC_LOVE: String,
+        var STAR_WORK: String,
+        var DESC_WORK: String,
+        var STAR_MONEY: String,
+        var DESC_MONEY: String
 
-    )
+    ):Serializable
 
     data class Item(
-        val image: Int,
-        val name: String
+        var image: Int,
+        var name: String
     )
 
     data class Lucky(
-        val star: String = "",
-        val desc: String = ""
+        var star: String = "",
+        var desc: String = ""
 
     )
 

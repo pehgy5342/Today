@@ -2,47 +2,47 @@ package com.example.today.mydata
 
 class WeatherData {
     data class today(
-        val success: String,
-        val result: ResultBean,
-        val records: Records
+        var success: String,
+        var result: ResultBean,
+        var records: Records
     ) {
 
         data class ResultBean(
-            val resource_id: String,
-            val fields: List<FieldsBean>
+            var resource_id: String,
+            var fields: List<FieldsBean>
         ) {
 
             data class FieldsBean(
-                val id: String,
-                val type: String
+                var id: String,
+                var type: String
             )
         }
 
         data class Records(
-            val datasetDescription: String,
-            val location: List<LocationBean>
+            var datasetDescription: String,
+            var location: List<LocationBean>
         ) {
 
             data class LocationBean(
-                val locationName: String,
-                val weatherElement: List<WeatherElementBean>
+                var locationName: String,
+                var weatherElement: List<WeatherElementBean>
             ) {
 
                 data class WeatherElementBean(
-                    val elementName: String,
-                    val time: List<TimeBean>
+                    var elementName: String,
+                    var time: List<TimeBean>
                 ) {
 
                     data class TimeBean(
-                        val startTime: String,
-                        val endTime: String,
-                        val parameter: ParameterBean
+                        var startTime: String,
+                        var endTime: String,
+                        var parameter: ParameterBean
                     ) {
 
                         data class ParameterBean(
-                            val parameterName: String,
-                            val parameterValue: String,
-                            val parameterUnit: String
+                            var parameterName: String,
+                            var parameterValue: String,
+                            var parameterUnit: String
                         )
                     }
                 }
@@ -51,15 +51,15 @@ class WeatherData {
     }
 
     data class Aweather(
-        val locationName: String,
-        val Wx: String,
-        val AT: String,
-        val T: String,
-        val CI: String,
-        val PoP6h: String
+        var locationName: String,
+        var Wx: String,
+        var AT: String,
+        var T: String,
+        var CI: String,
+        var PoP6h: String
     )
 
-    data class week(val myDate: String, val temp: String, val PoP: String)
+    data class week(var myDate: String, var temp: String, var PoP: String)
 
 
 
