@@ -28,12 +28,13 @@ class ConstellationAdapter :
             ConstellationData.Item(R.drawable.capricorn, "摩羯座")
         )
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClick(name: String)
     }
-    var mOnItemClickListener : OnItemClickListener? = null
 
-    fun setOnItemClickListener(mOnItemClickListener: OnItemClickListener){
+    var mOnItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(mOnItemClickListener: OnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener
     }
 
@@ -69,4 +70,6 @@ class ConstellationAdapter :
 
         }
     }
+
+
 }

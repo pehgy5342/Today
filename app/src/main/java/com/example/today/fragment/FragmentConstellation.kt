@@ -1,6 +1,7 @@
 package com.example.today.fragment
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,6 @@ import com.example.today.mydata.API
 import com.example.today.mydata.ConstellationData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_constellation.*
 import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
@@ -29,6 +29,17 @@ class FragmentConstellation : Fragment() {
 
     //    var constellationList: ((ArrayList<String>) -> Unit)? = null
     var constellationList = ArrayList<ConstellationData.Data>()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        connect()
+    }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        connect()
+//
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -42,24 +53,41 @@ class FragmentConstellation : Fragment() {
     fun conView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_constellation)
         val adapter = ConstellationAdapter()
+        val bundle = Bundle()
         val intent = Intent(this@FragmentConstellation.context, ConstellationActivity::class.java)
+
         adapter.setOnItemClickListener(object : ConstellationAdapter.OnItemClickListener {
             override fun onItemClick(name: String) {
 
 
-                println("987654${constellationList}")
+                if (constellationList.size != 0) {
 
-                constellationList.forEach {
                     println("987654${constellationList}")
-                    Log.i("iiiiiii","$name..${it.name}")
-                    if (it.name.contains(name)) {
-                        println("DDDDDDDDD${it.DESC_WORK}")
-                        println("iiiiiiiiiiiiiii${it.name}")
-                        intent.putExtra("name", it.name)
 
-                        intent.putExtra("starMoney", it.STAR_MONEY)
-                        intent.putExtra("descMoney", it.DESC_MONEY)
+                    constellationList.forEach {
+                        println("987654${constellationList}")
+                        Log.i("iiiiiii", "$name..${it.name}")
+                        if (it.name.contains(name)) {
 
+                            println("iiiiiiiiiiiiiii${it.name}")
+
+//                        bundle.putSerializable("key", constellationList)
+//
+//                        intent.putExtra("Bundle", bundle)
+
+                            intent.putExtra("key", constellationList)
+
+//                            intent.putExtra("name", it.name)
+//                            intent.putExtra("starMoney", it.STAR_MONEY)
+//                            intent.putExtra("descMoney", it.DESC_MONEY)
+//                            intent.putExtra("starWork", it.STAR_WORK)
+//                            intent.putExtra("descWork", it.DESC_WORK)
+//                            intent.putExtra("starLove", it.STAR_LOVE)
+//                            intent.putExtra("descLove", it.DESC_LOVE)
+//                            intent.putExtra("starEntirety", it.STAR_ENTIRETY)
+//                            intent.putExtra("descEntirety", it.DESC_ENTIRETY)
+
+                        }
                     }
 
                 }
@@ -104,26 +132,7 @@ class FragmentConstellation : Fragment() {
                 constellationList = Gson().fromJson<ArrayList<ConstellationData.Data>>(responseStr)
                 println("5555555$constellationList")
 
-//                for (i in 0 until dataList.size){
-//
-//
-//                    constellationList.add(ConstellationData.Data())
-//                }
 
-
-//                for (i in 0 until myResponse.length()) {
-//                    val name = myResponse.getJSONObject(i).getString("name")
-//                    val todayWord = myResponse.getJSONObject(i).getString("TODAY_WORD")
-//                    val luckyNumeral = myResponse.getJSONObject(i).getString("LUCKY_NUMERAL")
-//                    val luckyColor = myResponse.getJSONObject(i).getString("LUCKY_COLOR")
-//
-//                    println("nnnnnnnnnnn$name")
-//
-//                    constellationList.add(ConstellationData.Data(name, todayWord, luckyNumeral,luckyColor))
-//                }
-//                println("cccccccc$constellationList")
-
-//                constellationList!!.invoke(constellationNameList)
             }
 
 

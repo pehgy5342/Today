@@ -24,7 +24,7 @@ import java.util.*
 
 
 class FragmentWeather : Fragment() {
-//    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
+    //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
     lateinit var fragView: View
     var cityNameList = ArrayList<String>()
     var weatherList = ArrayList<WeatherData.Aweather>()
@@ -55,11 +55,18 @@ class FragmentWeather : Fragment() {
         "連江縣"
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        connect()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         fragView = inflater.inflate(R.layout.fragment_weather, container, false)
+
 
         fragView.btn_searchCity.setOnClickListener {
             Log.i("wwww", "$weatherList")

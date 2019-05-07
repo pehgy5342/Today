@@ -1,30 +1,33 @@
 <resources>
     <string name="app_name">Today</string>
 
-    <string-array name="cityNames">
-        <item>基隆市</item>
-        <item>新北市</item>
-        <item>臺北市</item>
-        <item>宜蘭縣</item>
-        <item>桃園市</item>
-        <item>新竹縣</item>
-        <item>新竹市</item>
-        <item>苗栗縣</item>
-        <item>臺中市</item>
-        <item>彰化縣</item>
-        <item>南投縣</item>
-        <item>雲林縣</item>
-        <item>嘉義市</item>
-        <item>嘉義縣</item>
-        <item>臺南市</item>
-        <item>高雄市</item>
-        <item>屏東縣</item>
-        <item>臺東縣</item>
-        <item>花蓮縣</item>
-        <item>澎湖縣</item>
-        <item>金門縣</item>
-        <item>連江縣</item>
-    </string-array>
+    <!--<string-array name="cityNames">-->
+    <!--<item>基隆市</item>-->
+    <!--<item>新北市</item>-->
+    <!--<item>臺北市</item>-->
+    <!--<item>宜蘭縣</item>-->
+    <!--<item>桃園市</item>-->
+    <!--<item>新竹縣</item>-->
+    <!--<item>新竹市</item>-->
+    <!--<item>苗栗縣</item>-->
+    <!--<item>臺中市</item>-->
+    <!--<item>彰化縣</item>-->
+    <!--<item>南投縣</item>-->
+    <!--<item>雲林縣</item>-->
+    <!--<item>嘉義市</item>-->
+    <!--<item>嘉義縣</item>-->
+    <!--<item>臺南市</item>-->
+    <!--<item>高雄市</item>-->
+    <!--<item>屏東縣</item>-->
+    <!--<item>臺東縣</item>-->
+    <!--<item>花蓮縣</item>-->
+    <!--<item>澎湖縣</item>-->
+    <!--<item>金門縣</item>-->
+    <!--<item>連江縣</item>-->
+    <!--</string-array>-->
+
+    <string name="tb_constellation">星座運勢</string>
+    <string name="tb_daily">日記</string>
 
     <string name="cityName">台南市</string>
     <string name="temp">現在溫度</string>
@@ -38,6 +41,8 @@
     <string name="conTitle">星座</string>
     <string name="conLucky">運勢</string>
     <string name="conInfo">內容</string>
+
+    <string name="progress">資料讀取中，請稍後...</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

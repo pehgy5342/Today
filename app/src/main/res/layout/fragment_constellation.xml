@@ -23,9 +23,9 @@
 
         <TextView
                 android:id="@+id/tv_everyday"
-                android:text="星座運勢"
+                android:text="@string/tb_constellation"
                 android:textColor="#FFFFFF"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"

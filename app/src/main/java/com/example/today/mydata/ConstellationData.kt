@@ -23,7 +23,13 @@ class ConstellationData {
 
     data class Item(
         val image: Int,
-        val name: String = ""
+        val name: String
+    )
+
+    data class Lucky(
+        val star: String = "",
+        val desc: String = ""
+
     )
 
 

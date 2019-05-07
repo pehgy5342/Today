@@ -2,13 +2,13 @@ package com.example.today.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.example.today.R
 import com.example.today.adapter.MyViewPagerAdapter
 import com.example.today.fragment.FragmentConstellation
 import com.example.today.fragment.FragmentEarthquake
 import com.example.today.fragment.FragmentWeather
-import com.example.today.okhttp.Constellation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 
@@ -27,42 +27,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        intent.getStringExtra("Hello")
 
         getJsonWeather()
-
         initView()
-        fragmentWea.connect()
-        fragmentCon.connect()
     }
-//
+
 //    override fun onResume() {
 //        super.onResume()
 //        (manager.findFragmentById(R.id.fragment) as FragmentWeather).connect()
 //    }
 
-//    inline fun <reified T> Gson.toJson(json: String) = this.toJson<T>(json, object : TypeToken<T>() {}.type)
-
-
-//    fun jsonBundle() {
-//
-//        val transaction = manager.beginTransaction()
-//
-//        transaction.add(0, fragmentWea).commit()
-//        val bundle = Bundle()
-//        val gson = Gson()
-//
-//        weather.locationWeatherList = {
-//            println("wwwwwwwwwwwww${it}")
-//            val json = gson.toJson(it)
-//            bundle.putString("weather", json)
-//            fragmentWea.arguments = bundle
-//
-//
-//            println("bbbbbbbbbbbbbbbbbbb$bundle")
-//        }
-//
-//
-//    }
 
     fun getJsonWeather() {
 
@@ -127,11 +102,16 @@ class MainActivity : AppCompatActivity() {
         tabAdapter.addFragment(fragmentWea, "天氣")
         tabAdapter.addFragment(fragmentCon, "星座")
         tabAdapter.addFragment(fragmentEar, "日記")
-
+        viewPager.offscreenPageLimit = 2
         viewPager.adapter = tabAdapter
         tabLayout.setupWithViewPager(viewPager)
         setTabIcon()
+
+
     }
+
+
+
 
 
     fun setTabIcon() {
