@@ -4,7 +4,7 @@ import java.io.Serializable
 
 class ConstellationData {
 
-    data class Data(
+    data class Constellation(
         var name: String,
         var TODAY_WORD: String,
         var LUCKY_NUMERAL: String,

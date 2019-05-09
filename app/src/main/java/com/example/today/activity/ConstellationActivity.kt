@@ -17,7 +17,7 @@ class ConstellationActivity : AppCompatActivity() {
     lateinit var adapter: LuckyAdapter
     var starList = ArrayList<ConstellationData.Lucky>()
 
-    //    var constellationList: ArrayList<ConstellationData.Data>? = null
+    //    var constellationList: ArrayList<ConstellationData.Constellation>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_constellation)
@@ -35,7 +35,7 @@ class ConstellationActivity : AppCompatActivity() {
 
 //        if (starMoney == null) {
 //            val builder = AlertDialog.Builder(this)
-//            val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
+//            val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
 //            builder.setView(dialogView)
 //            builder.setCancelable(true)
 //            val dialog = builder.create()
@@ -51,25 +51,14 @@ class ConstellationActivity : AppCompatActivity() {
 //            updateView(starList)
 //        }
 
-        val list = intent.getSerializableExtra("object") as ConstellationData.Data
+        val list = intent.getSerializableExtra("object") as ConstellationData.Constellation
 
         println("kkkkkkkkkkkkkk$list")
 
-        tb_title.title = list.name
+//        tb_title.title = list.name
 
-        if (list == null) {
-            val builder = AlertDialog.Builder(this)
-            val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
-            builder.setView(dialogView)
-            builder.setCancelable(true)
-            val dialog = builder.create()
-            dialog.show()
-            Handler().postDelayed({ dialog.dismiss() }, 6000)
-            Glide.with(this).load(R.drawable.white_error).into(iv_toolbar)
-            Toast.makeText(this, "資料錯誤", Toast.LENGTH_SHORT).show()
-
-        } else {
-            list.name = tb_title.title.toString()
+        if (list != null) {
+//            list.name = tb_title.title.toString()
             list.STAR_MONEY
             Glide.with(this).load(R.drawable.starts).into(iv_toolbar)
             starList.add(ConstellationData.Lucky(list.STAR_MONEY, list.DESC_MONEY))
@@ -78,6 +67,23 @@ class ConstellationActivity : AppCompatActivity() {
             starList.add(ConstellationData.Lucky(list.STAR_ENTIRETY, list.DESC_ENTIRETY))
             updateView(starList)
 
+
+        } else {
+
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val dialog = builder.create()
+            dialog.show()
+            Handler().postDelayed({ dialog.dismiss() }, 6000)
+            Glide.with(this).load(R.drawable.white_error).into(iv_toolbar)
+            Toast.makeText(this, "資料錯誤", Toast.LENGTH_SHORT).show()
+
+        }
+
+        btn_return.setOnClickListener {
+            finish()
         }
 
 
@@ -92,7 +98,7 @@ class ConstellationActivity : AppCompatActivity() {
         rv_lucky.adapter = adapter
 
 //        val builder = AlertDialog.Builder(context!!)
-//        val dialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
+//        val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
 //        builder.setView(dialogView)
 //        builder.setCancelable(true)
 //        val dialog = builder.create()

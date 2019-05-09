@@ -1,7 +1,6 @@
 package com.example.today.fragment
 
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,18 +27,13 @@ class FragmentConstellation : Fragment() {
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
     //    var constellationList: ((ArrayList<String>) -> Unit)? = null
-    var constellationList = ArrayList<ConstellationData.Data>()
+    var constellationList = ArrayList<ConstellationData.Constellation>()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         connect()
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        connect()
-//
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -118,7 +112,7 @@ class FragmentConstellation : Fragment() {
                 var myResponse = JSONArray(responseStr)
                 println("mmmmmmmmmmmmmmmmmmmmmm$myResponse")
 
-                constellationList = Gson().fromJson<ArrayList<ConstellationData.Data>>(responseStr)
+                constellationList = Gson().fromJson<ArrayList<ConstellationData.Constellation>>(responseStr)
                 println("5555555$constellationList")
 
 
