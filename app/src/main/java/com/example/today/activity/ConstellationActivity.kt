@@ -55,12 +55,12 @@ class ConstellationActivity : AppCompatActivity() {
 
         println("kkkkkkkkkkkkkk$list")
 
-//        tb_title.title = list.name
+        tb_title.title = list.name
 
         if (list != null) {
-//            list.name = tb_title.title.toString()
+
             list.STAR_MONEY
-            Glide.with(this).load(R.drawable.starts).into(iv_toolbar)
+            Glide.with(this).load(R.drawable.star).into(iv_toolbar)
             starList.add(ConstellationData.Lucky(list.STAR_MONEY, list.DESC_MONEY))
             starList.add(ConstellationData.Lucky(list.STAR_WORK, list.DESC_WORK))
             starList.add(ConstellationData.Lucky(list.STAR_LOVE, list.DESC_LOVE))

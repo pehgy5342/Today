@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import com.bumptech.glide.Glide
 import com.example.today.R
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_welcome.*
 
-class HomeActivity : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_welcome)
 
         Glide.with(this).load(R.drawable.welcome).into(iv_welcome)
 

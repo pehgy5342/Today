@@ -44,6 +44,9 @@
 
     <string name="progress">資料讀取中，請稍後...</string>
 
+    <string name="dailyTitle">標題</string>
+    <string name="dailyContent">內容</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

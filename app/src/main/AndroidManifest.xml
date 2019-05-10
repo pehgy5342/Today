@@ -16,7 +16,7 @@
         <activity android:name=".activity.ConstellationActivity">
         </activity>
         <activity
-                android:name=".activity.HomeActivity"
+                android:name=".activity.WelcomeActivity"
                 android:configChanges="orientation"
                 android:windowSoftInputMode="adjustPan">
             <intent-filter>
