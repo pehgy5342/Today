@@ -1,6 +1,7 @@
 package com.example.today.fragment
 
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +12,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.example.today.R
 import com.example.today.mydata.API
 import com.example.today.mydata.WeatherData
+import com.example.today.okhttp.WeatherToday
 import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
 import okhttp3.*
@@ -26,9 +27,13 @@ import java.util.*
 class FragmentWeather : Fragment() {
     //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
     lateinit var fragView: View
+    var position = 0f
     var cityNameList = ArrayList<String>()
     var weatherList = ArrayList<WeatherData.Aweather>()
     var locationWeatherList: ((ArrayList<WeatherData.Aweather>) -> Unit)? = null
+
+
+
     //CharSequence與arraylist不同之處為她為固定資料，不可增加或移除
     val list: Array<CharSequence> = arrayOf(
         "基隆市",
@@ -55,10 +60,17 @@ class FragmentWeather : Fragment() {
         "連江縣"
     )
 
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        json()
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         connect()
+
+
     }
 
 
@@ -66,6 +78,8 @@ class FragmentWeather : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         fragView = inflater.inflate(R.layout.fragment_weather, container, false)
+
+
 
 
         fragView.btn_searchCity.setOnClickListener {
@@ -98,34 +112,41 @@ class FragmentWeather : Fragment() {
 
                     }
 
-                    when (it.Wx) {
+//                    when (it.Wx) {
+//
+//                        "晴" ->
+//                            Glide.with(this).load(R.drawable.sun).into(iv_Wx)
+//                        "晴時多雲" ->
+//                            Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
+//                        "多雲" ->
+//                            Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
+//                        "多雲短暫陣雨" ->
+//                            Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
+//                        "短暫陣雨" ->
+//                            Glide.with(this).load(R.drawable.rain).into(iv_Wx)
+//                        "陰" ->
+//                            Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
+//                        "短暫陣雨或雷雨" ->
+//                            Glide.with(this).load(R.drawable.rain_thunder).into(iv_Wx)
+//                    }
 
-                        "晴" ->
-                            Glide.with(this).load(R.drawable.sun).into(iv_Wx)
-                        "晴時多雲" ->
-                            Glide.with(this).load(R.drawable.sun_cloudy).into(iv_Wx)
-                        "多雲" ->
-                            Glide.with(this).load(R.drawable.cloudys).into(iv_Wx)
-                        "多雲短暫陣雨" ->
-                            Glide.with(this).load(R.drawable.rain_cloudy).into(iv_Wx)
-                        "短暫陣雨" ->
-                            Glide.with(this).load(R.drawable.rain).into(iv_Wx)
-                        "陰" ->
-                            Glide.with(this).load(R.drawable.cloud).into(iv_Wx)
-                        "短暫陣雨或雷雨" ->
-                            Glide.with(this).load(R.drawable.rain_thunder).into(iv_Wx)
-                    }
 
-
-                    when (it.CI) {
-                        "舒適" -> Glide.with(this).load(R.drawable.cool).into(iv_CI)
-                        "悶熱" -> Glide.with(this).load(R.drawable.hot).into(iv_CI)
-                        else -> Glide.with(this).load(R.drawable.fit).into(iv_CI)
-                    }
+//                    when (it.CI) {
+//                        "舒適" -> Glide.with(this).load(R.drawable.cool).into(iv_CI)
+//                        "悶熱" -> Glide.with(this).load(R.drawable.hot).into(iv_CI)
+//                        else -> Glide.with(this).load(R.drawable.fit).into(iv_CI)
+//                    }
 
                 }
             }
                 .setPositiveButton("確定") { dialog, which ->
+
+//                    val builder = AlertDialog.Builder(this@FragmentWeather.context!!)
+//                    val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
+//                    builder.setView(dialogView)
+//                    builder.setCancelable(true)
+//                    val dialog = builder.create()
+//                    dialog.show()
 
                 }
                 .setNegativeButton("取消") { dialog, which ->
@@ -134,32 +155,21 @@ class FragmentWeather : Fragment() {
                     //畫面顯示位置
                     toast.setGravity(Gravity.BOTTOM, 0, 200)
                     toast.duration = Toast.LENGTH_SHORT
-                    toast.view = layoutInflater.inflate(R.layout.toast_cacel, null)
+                    toast.view = layoutInflater.inflate(R.layout.toast_cancel, null)
                     toast.show()
                 }
                 .create().show()
-
-
         }
 
-//        initView(fragView)
         return fragView
     }
+//    tv_cityName.text = it[0].locationName
+//    tv_T.text = "${it[0].T}°C"
+//    tv_Wx.text = it[0].Wx
+//    tv_AT.text = "體感 ${it[0].AT}°C"
+//    tv_PoP6h.text = "降雨量 ${it[0].PoP6h}%"
+//    tv_CI.text = it[0].CI
 
-
-//    override fun onResume() {
-//        super.onResume()
-//        Log.i("123456789 onresume", "$weatherList")
-//    }
-
-
-//    fun initView(view: View) {
-//        val weekAdapter = WeatherWeekAdapter()
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_weatherWeek)
-//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//        recyclerView.adapter = weekAdapter
-//
-//    }
 
     fun connect() {
         val api = API()
@@ -183,7 +193,8 @@ class FragmentWeather : Fragment() {
         client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("msg from WeatherToday", "Fail from ")
+                Log.d("msg from WeatherToday", "Fail from Weather")
+
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -192,16 +203,16 @@ class FragmentWeather : Fragment() {
                 //取得回傳資料的內容，.string()是指並不是轉字串而是回傳response
                 val responseStr = response.body()!!.string()
 
-                val myResponse = JSONObject(responseStr)
+                val weatherResponse = JSONObject(responseStr)
 
-                responseList.add(myResponse)
+                responseList.add(weatherResponse)
 
 //                weatherResponseList?.invoke(responseList)
 
-                println("11111111111$myResponse")
+                println("11111111111$weatherResponse")
 
 //                val c = WeatherExtraction().extraction(jaonArr)
-                val records = myResponse.getJSONObject("records")
+                val records = weatherResponse.getJSONObject("records")
                 val locations = records.getJSONArray("locations")
                 val location = locations.getJSONObject(0).getJSONArray("location")
 
@@ -223,24 +234,34 @@ class FragmentWeather : Fragment() {
 //                    println("oooooooooooooo $locationName")
 
                     val Wx =
-                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(0).getJSONArray("time")
-                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0).getString("value")
+                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(0)
+                            .getJSONArray("time")
+                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0)
+                            .getString("value")
 
                     val AT =
-                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(1).getJSONArray("time")
-                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0).getString("value")
+                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(1)
+                            .getJSONArray("time")
+                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0)
+                            .getString("value")
 
                     val T =
-                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(2).getJSONArray("time")
-                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0).getString("value")
+                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(2)
+                            .getJSONArray("time")
+                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0)
+                            .getString("value")
 
                     val CI =
-                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(3).getJSONArray("time")
-                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(1).getString("value")
+                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(3)
+                            .getJSONArray("time")
+                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(1)
+                            .getString("value")
 
                     val PoP6h =
-                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(4).getJSONArray("time")
-                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0).getString("value")
+                        location.getJSONObject(i).getJSONArray("weatherElement").getJSONObject(4)
+                            .getJSONArray("time")
+                            .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0)
+                            .getString("value")
 
 
                     weatherList.add(WeatherData.Aweather(locationName, Wx, AT, T, CI, PoP6h))
@@ -258,6 +279,54 @@ class FragmentWeather : Fragment() {
 
 
     }
+
+
+    fun json() {
+
+
+        tv_cityName.text = weatherList[0].locationName
+        tv_T.text = "${weatherList[0].Wx}°C"
+        tv_Wx.text = weatherList[0].Wx
+        tv_AT.text = "體感 ${weatherList[0].AT}°C"
+        tv_PoP6h.text = "降雨量 ${weatherList[0].PoP6h}%"
+        tv_CI.text = weatherList[0].CI
+
+    }
+
+
+//    fun game() {
+//
+//        Glide.with(this).load(R.drawable.ground).into(fragView.iv_bg)
+//        Glide.with(this).load(R.drawable.doge).into(fragView.iv_game)
+//        Glide.with(this).load(R.drawable.left).into(fragView.ibtn_left)
+//        Glide.with(this).load(R.drawable.right).into(fragView.ibtn_right)
+//
+//        fragView.ibtn_right.setOnClickListener {
+//
+//
+//            val animator = ValueAnimator.ofFloat(position, position+100f)
+//            animator.addUpdateListener { animation ->
+//                iv_game.translationX = animation.animatedValue as Float
+//
+//            }
+//            animator.duration = 200
+//            animator.start()
+//
+//        }
+//
+//        fragView.ibtn_left.setOnClickListener {
+//
+//
+//            val animator = ValueAnimator.ofFloat(position, position-100f)
+//            animator.addUpdateListener { animation ->
+//                iv_game.translationX = animation.animatedValue as Float
+//
+//            }
+//            animator.duration = 200
+//            animator.start()
+//
+//        }
+//    }
 
 
 }

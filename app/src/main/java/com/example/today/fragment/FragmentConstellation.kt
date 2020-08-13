@@ -1,12 +1,15 @@
 package com.example.today.fragment
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +35,7 @@ class FragmentConstellation : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        connect()
+//        connect()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,20 +50,33 @@ class FragmentConstellation : Fragment() {
     fun conView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_constellation)
         val adapter = ConstellationAdapter()
-        val bundle = Bundle()
         val intent = Intent(this@FragmentConstellation.context, ConstellationActivity::class.java)
 
         adapter.setOnItemClickListener(object : ConstellationAdapter.OnItemClickListener {
             override fun onItemClick(name: String) {
 
 
-                if (constellationList.size != 0) {
+                if (constellationList.isEmpty()) {
+                    Toast.makeText(context, "目前無資料", Toast.LENGTH_SHORT).show()
+//                    val builder = AlertDialog.Builder(this@FragmentConstellation.context)
+//                    val dialogView = layoutInflater.inflate(R.layout.progress_item, null)
+//                    val msg = dialogView.findViewById<TextView>(R.id.tv_msg)
+//                    msg.text = "資料讀取中，請稍後．．．"
+//                    builder.setView(dialogView)
+//                    builder.setCancelable(true)
+//                    val dialog = builder.create()
+//                    dialog.show()
 
-                    println("987654${constellationList}")
+
+
+                } else {
 
                     constellationList.forEach {
+
+
                         println("987654${constellationList}")
                         Log.i("iiiiiii", "$name..${it.name}")
+
                         if (it.name.contains(name)) {
 
                             println("iiiiiiiiiiiiiii${it.name}")
@@ -69,12 +85,15 @@ class FragmentConstellation : Fragment() {
                             //使用Serializable自訂義類型的object整個intent
                             intent.putExtra("object", it)
 
-
                         }
+
                     }
+                    startActivity(intent)
+
 
                 }
-                startActivity(intent)
+
+
             }
         })
 
@@ -109,8 +128,8 @@ class FragmentConstellation : Fragment() {
 
                 val responseStr = response.body()!!.string()
                 println("6666666666666666$responseStr")
-                var myResponse = JSONArray(responseStr)
-                println("mmmmmmmmmmmmmmmmmmmmmm$myResponse")
+//                var myResponse = JSONArray(responseStr)
+//                println("mmmmmmmmmmmmmmmmmmmmmm$myResponse")
 
                 constellationList = Gson().fromJson<ArrayList<ConstellationData.Constellation>>(responseStr)
                 println("5555555$constellationList")

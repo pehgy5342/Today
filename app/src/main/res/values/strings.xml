@@ -27,7 +27,7 @@
     <!--</string-array>-->
 
     <string name="tb_constellation">星座運勢</string>
-    <string name="tb_daily">日記</string>
+    <string name="daily">日記</string>
 
     <string name="cityName">台南市</string>
     <string name="temp">現在溫度</string>
@@ -42,7 +42,7 @@
     <string name="conLucky">運勢</string>
     <string name="conInfo">內容</string>
 
-    <string name="progress">資料讀取中，請稍後...</string>
+    <string name="progress">Loading...</string>
 
     <string name="dailyTitle">標題</string>
     <string name="dailyContent">內容</string>
@@ -50,4 +50,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="name">Name</string>
+    <string name="desc">描述</string>
+    <string name="time">Time</string>
+    <string name="author">新聞來源</string>
+    <string name="news">新聞</string>
+    <string name="weather">天氣</string>
+
+
 </resources>

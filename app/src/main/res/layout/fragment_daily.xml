@@ -4,7 +4,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragment.FragmentEarthquake">
+             tools:context=".fragment.FragmentDaily">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/con_daily"
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
         <TextView
                 android:id="@+id/tv_daily"
-                android:text="@string/tb_daily"
+                android:text="@string/daily"
                 android:textSize="30sp"
                 android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"

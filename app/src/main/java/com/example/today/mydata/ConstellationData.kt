@@ -21,7 +21,7 @@ class ConstellationData {
         var STAR_MONEY: String,
         var DESC_MONEY: String
 
-    ):Serializable
+    ) : Serializable
 
     data class Item(
         var image: Int,
@@ -33,6 +33,8 @@ class ConstellationData {
         var desc: String = ""
 
     )
+
+
 
 
 }

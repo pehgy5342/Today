@@ -1,6 +1,7 @@
 package com.example.today.okhttp
 
 import android.util.Log
+import android.widget.Toast
 import com.example.today.mydata.API
 import com.example.today.mydata.WeatherData
 
@@ -14,7 +15,8 @@ class WeatherToday {
 
 //    inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
-    var weatherList: ((ArrayList<WeatherData.Aweather>) -> Unit)? = null
+    var weatherList = ArrayList<WeatherData.Aweather>()
+    var locationWeatherList: ((ArrayList<WeatherData.Aweather>) -> Unit)? = null
 
     fun connect() {
         val api = API()
@@ -39,6 +41,9 @@ class WeatherToday {
 
             override fun onFailure(call: Call, e: IOException) {
                 Log.d("msg from WeatherToday", "Fail from ")
+
+
+
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -90,14 +95,14 @@ class WeatherToday {
                             .getJSONObject(0).getJSONArray("elementValue").getJSONObject(0).getString("value")
 
 
-                    locationNameList.add(WeatherData.Aweather(locationName, Wx, AT, T, CI, PoP6h))
+                    weatherList.add(WeatherData.Aweather(locationName, Wx, AT, T, CI, PoP6h))
 
 
                 }
 
                 println("***************** $locationNameList")
 
-//                locationWeatherList!!.invoke(weatherList)
+                locationWeatherList!!.invoke(weatherList)
 
 
             }

@@ -2,47 +2,48 @@ package com.example.today.mydata
 
 class WeatherData {
     data class today(
-        var success: String,
-        var result: ResultBean,
-        var records: Records
+        val success: String,
+        val result: ResultBean,
+        val records: Records
     ) {
 
+
         data class ResultBean(
-            var resource_id: String,
-            var fields: List<FieldsBean>
+            val resource_id: String,
+            val fields: List<FieldsBean>
         ) {
 
             data class FieldsBean(
-                var id: String,
-                var type: String
+                val id: String,
+                val type: String
             )
         }
 
         data class Records(
-            var datasetDescription: String,
-            var location: List<LocationBean>
+            val datasetDescription: String,
+            val location: List<LocationBean>
         ) {
 
             data class LocationBean(
-                var locationName: String,
-                var weatherElement: List<WeatherElementBean>
+                val locationName: String,
+                val weatherElement: List<WeatherElementBean>
             ) {
 
                 data class WeatherElementBean(
-                    var elementName: String,
-                    var time: List<TimeBean>
+                    val elementName: String,
+                    val time: List<TimeBean>
                 ) {
 
                     data class TimeBean(
-                        var startTime: String,
-                        var endTime: String,
-                        var parameter: ParameterBean
+                        val startTime: String,
+                        val endTime: String,
+                        val parameter: ParameterBean
                     ) {
 
                         data class ParameterBean(
-                            var parameterName: String,
-                            var parameterValue: String,
-                            var parameterUnit: String
+                            val parameterName: String,
+                            val parameterValue: String,
+                            val parameterUnit: String
                         )
                     }
                 }

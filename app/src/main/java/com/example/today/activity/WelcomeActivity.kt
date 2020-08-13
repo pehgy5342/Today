@@ -14,7 +14,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        Glide.with(this).load(R.drawable.welcome).into(iv_welcome)
+        Glide.with(this).load(R.drawable.home).into(iv_welcome)
 
         val intent = Intent(this, MainActivity::class.java)
         Handler().postDelayed(Runnable {

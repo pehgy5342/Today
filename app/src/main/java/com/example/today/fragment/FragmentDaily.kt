@@ -13,7 +13,7 @@ import com.example.today.mydata.DailyData
 import kotlinx.android.synthetic.main.fragment_daily.view.*
 
 
-class FragmentEarthquake : Fragment() {
+class FragmentDaily : Fragment() {
 
     var textList = ArrayList<DailyData.Daily>()
 
