@@ -75,11 +75,11 @@ class FragmentNews : Fragment() {
                     val author = articles.getJSONObject(i).getString("author")
                     val title = articles.getJSONObject(i).getString("title")
 //                    val desc = articles.getJSONObject(i).getString("description")
-//                    val url = articles.getJSONObject(i).getString("url")
+                    val url = articles.getJSONObject(i).getString("url")
                     val image = articles.getJSONObject(i).getString("urlToImage")
                     val time = articles.getJSONObject(i).getString("publishedAt")
 
-                    newsList.add(NewsData.Anews(name, author, title, image, time))
+                    newsList.add(NewsData.Anews(name, author, title, url, image, time))
 
 
                 }
