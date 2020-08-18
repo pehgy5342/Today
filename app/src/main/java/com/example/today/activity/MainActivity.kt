@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         tabAdapter.addFragment(fragmentWea, "天氣")
         tabAdapter.addFragment(fragmentNews, "新聞")
-        tabAdapter.addFragment(fragmentDai, "日記")
+        tabAdapter.addFragment(fragmentDai, "記事")
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = tabAdapter
         tabLayout.setupWithViewPager(viewPager)
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val tabIcon: IntArray = intArrayOf(
             R.drawable.sun,
             R.drawable.news,
-            R.drawable.earth
+            R.drawable.note
         )
 
         tabLayout.getTabAt(0)!!.setIcon(tabIcon[0])

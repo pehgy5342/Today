@@ -40,7 +40,8 @@ class ConstellationAdapter :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.constellation_home_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.constellation_home_item, parent, false)
         return CustomHolder(view)
     }
 

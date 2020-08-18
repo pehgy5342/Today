@@ -269,8 +269,8 @@ class FragmentWeather : Fragment() {
                 }
 
                 locationWeatherList!!.invoke(weatherList)
-                Log.i("123456798 onconnect", "$weatherList")
-                Log.i("123456798 onconnect", "${this@FragmentWeather}")
+                Log.i("WeatherData onconnect", "$weatherList")
+                Log.i("WeatherData onconnect", "${this@FragmentWeather}")
 
 
             }

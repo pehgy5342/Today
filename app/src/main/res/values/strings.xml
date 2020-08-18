@@ -27,9 +27,9 @@
     <!--</string-array>-->
 
     <string name="tb_constellation">星座運勢</string>
-    <string name="daily">日記</string>
+    <string name="daily">記事本</string>
 
-    <string name="cityName">台南市</string>
+    <string name="cityName">縣市名稱</string>
     <string name="temp">現在溫度</string>
     <string name="T">0 °C</string>
     <string name="Wx">天氣現象</string>
